@@ -1,0 +1,32 @@
+---
+title: (Current Project)Blog Migration
+date: 2021/10/11
+description: Migrating A Substack Blog To Next.js   
+---
+
+# Blog Migration
+
+For this project I am working on migrating an existing blog from Substack to Next.js. The blog I am attempting to migrate is one that I personally manage and write nearly all the content for. Currently the blog is on hiatus, but I have plans to relaunch the blog after the migration is finished.   
+
+## Goals
+- Migrate all content to a statically generated website
+- Implement an incremental static regeneration pattern so that the entire website does not need to rebuild for each new blog post
+- Implement a newsletter & subscriber system similar to Substack     
+- Be able to accept tips & and paid subscriber only content
+
+## Project Considerations
+Since the main goal of this project is to build a statically generated website using Next.js all other engineering decisions need to be made with that in mind. Starting from that point the next major decision that needs to be made is how the website will be hosted. Taking the goals of the project into consideration the there are two possible routes I am considering.   
+
+### Option 1 Vercel
+For many reasons Vercel will always be the first hosting choice I consider when deploying an Next.js project. If I go this route, I am planning on using MongoDB to store my blog post data and a service like Mailchimp to run the newsletter. Additionally, I plan on using Stripe to accept payments.    
+
+### Option 2 AWS
+AWS is also being considered because I would like to challenge myself and build out a custom newsletter solution and Amazon Simple Email Service is what I would use to do it. If I go this route the plan is to leverage several AWS services to build out the system.
+
+## Project Current State  
+Currently the front end is close to being completely built. As a temporary solution to help build out the rest of the project, blog posts are currently being stored in markdown files in the Next.js project folder. Also, I have used React Context to create a custom useSubscriber hook to provide global context that tells the app if the person reading has already subscribed to the newsletter or not. The reason for this is that I want to only prompt users to subscribe to the newsletter if they have not yet subscribed.
+
+## Next Steps
+The next steps I am taking for this project is to move the blog data to a database and to either connect the project to service like Mailchimp or build out my own custom newsletter solution using AWS.
+
+## [Back To Home](/)
