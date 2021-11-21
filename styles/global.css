@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.notion{
+}
+.notion h2{
+  @apply text-3xl font-bold my-2
+}
+.notion h3{
+  @apply text-xl font-bold my-2
+}
+.notion li{
+  @apply text-lg font-bold
+}
+.notion p{
+  @apply text-lg text-left my-2
+}
+.notion a{
+  @apply text-blue-500
+}

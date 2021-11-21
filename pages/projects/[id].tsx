@@ -1,39 +1,77 @@
 import Head from 'next/head'
-
+import Layout from '../../components/Layout'
+import Block from '../../components/Block'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import {getAllPostIds, getPostsData } from '../../lib/markdownToHtml'
+import {getDatabase, getPage, getBlocks, getID} from '../../lib/notion'
 
-const Page = () => {
+
+const Page = ({blocks, pageProps:{Description, Slug, GitHub, Demo, Name}}) => {
   return (
-    <div className="flex flex-col items-center justify-start min-h-screen py-2">
+    <Layout>
       <Head>
-        <title>Test </title>
+        <title>{Name.title[0].plain_text} </title>
       </Head>
 
-      <main className="flex flex-col items-center justify-start w-full flex-1 px-20 text-center">
-        <h1>Test</h1>
+      <main className="flex flex-col items-center justify-center w-full flex-1 text-center my-16">
+      <section  className="min-h-screen flex flex-col items-center justify-center w-full ">
+
+        <h1 className="text-4xl font-bold my-4 py-2">{Name.title[0].plain_text}</h1>
+        <div className="notion">
+        {blocks.map((block) =>
+          <Block key={block.id}  {...block}/>
+        )}
+        </div>
+        </section>
       </main>
-    </div>
+    </Layout>
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllPostIds()
+export const getStaticPaths = async () => {
+  const database = await getDatabase(process.env.PROJECT_DB);
   return {
-    paths,
-    fallback: false
-  }
-}
+    paths: database.map((page) => ({ params: { id: page.properties.Slug.rich_text[0].plain_text } })),
+    fallback: false,
+  };
+};
 
-export const getStaticProps: GetStaticProps = async ({params}) => {
-  const postData = await getPostsData(params.id)
+export const getStaticProps = async (context) => {
+  const { id } = context.params;
+  const pageID = await getID(id)
+  const page = await getPage(pageID);
+  const blocks = await getBlocks(pageID);
+
+  // Retrieve block children for nested blocks (one level deep), for example toggle blocks
+  // https://developers.notion.com/docs/working-with-page-content#reading-nested-blocks
+  const childBlocks = await Promise.all(
+    blocks
+      .filter((block) => block.has_children)
+      .map(async (block) => {
+        return {
+          id: block.id,
+          children: await getBlocks(block.id),
+        };
+      })
+  );
+  const blocksWithChildren = blocks.map((block) => {
+    // Add child blocks if the block should contain children but none exists
+    if (block.has_children && !block[block.type].children) {
+      block[block.type]["children"] = childBlocks.find(
+        (x) => x.id === block.id
+      )?.children;
+    }
+    return block;
+  });
 
   return {
     props: {
-      postData,
-    }
-  }
-}
+      pageProps: page.properties,
+      blocks: blocksWithChildren
+    },
+    revalidate: 1000,
+  };
+};
 
 
 export default Page

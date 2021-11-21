@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@notionhq/client": "^0.4.9",
     "gray-matter": "^4.0.3",
     "next": "latest",
     "next-mdx-remote": "^3.0.8",
