@@ -12,10 +12,7 @@ const Page = ({blocks, pageProps:{Description, Slug, GitHub, Demo, Name}}) => {
       <Head>
         <title>{Name.title[0].plain_text} </title>
       </Head>
-
-      <main className="flex flex-col items-center justify-center w-full flex-1 text-center my-16">
-      <section  className="min-h-screen flex flex-col items-center justify-center w-full ">
-
+      <section  className="my-16 ">
         <h1 className="text-4xl font-bold my-4 py-2">{Name.title[0].plain_text}</h1>
         <div className="notion">
         {blocks.map((block) =>
@@ -23,7 +20,6 @@ const Page = ({blocks, pageProps:{Description, Slug, GitHub, Demo, Name}}) => {
         )}
         </div>
         </section>
-      </main>
     </Layout>
   )
 }
@@ -41,9 +37,6 @@ export const getStaticProps = async (context) => {
   const pageID = await getID(id)
   const page = await getPage(pageID);
   const blocks = await getBlocks(pageID);
-
-  // Retrieve block children for nested blocks (one level deep), for example toggle blocks
-  // https://developers.notion.com/docs/working-with-page-content#reading-nested-blocks
   const childBlocks = await Promise.all(
     blocks
       .filter((block) => block.has_children)

@@ -6,7 +6,11 @@ type Props = {
 
 const FormatedDate = ({ date }: Props) => {
   const dateParsed = parseISO(date)
-  return <time dateTime={date}>{format(dateParsed, 'LLLL d, yyyy')}</time>
+  return (
+    <div className="text-gray-400	 text-left">
+      <time  dateTime={date}>{format(dateParsed, 'LLLL d, yyyy')}</time>
+    </div>
+  )
 }
 
 export default FormatedDate

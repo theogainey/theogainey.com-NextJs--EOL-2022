@@ -3,19 +3,24 @@
 @tailwind utilities;
 
 .notion{
+  @apply w-full
 }
 .notion h2{
-  @apply text-3xl font-bold my-2
+  @apply text-3xl font-bold my-2 py-2
 }
 .notion h3{
-  @apply text-xl font-bold my-2
+  @apply  text-xl font-bold my-2 py-2
 }
 .notion li{
-  @apply text-lg font-bold
+  @apply text-lg font-bold text-left
 }
 .notion p{
   @apply text-lg text-left my-2
 }
+.notion .bookmark{
+  @apply flex flex-row items-center justify-start text-lg text-left my-2
+}
+
 .notion a{
   @apply text-blue-500
 }

@@ -4,20 +4,21 @@ const Layout = ({children}) => {
   return(
     <div className="overflow-hidden flex flex-col items-center justify-center w-full px-10 min-h-screen">
     <header>
-      <nav  className="absolute text-xl flex flex-row items-center justify-start mt-10 inset-0 px-10 bg-white h-8 w-full ">
+      <nav  className="absolute text-xl flex flex-row items-center justify-start mt-10 inset-0 px-10 lg:left-1/4 lg:px-2	 bg-white h-8 w-full ">
         <Link href={'/'}>
           <a className="font-bold mx-2">Home</a>
         </Link>
         <Link href={'/#projects'}>
           <a className="font-bold mx-2">Projects</a>
         </Link>
-        <Link href={'/'}>
-          <a className="font-bold mx-2">Blog </a>
-        </Link>
+        <Link href={'/Links'}>
           <a className="font-bold  mx-2"> Links</a>
+        </Link>
       </nav>
     </header>
+    <main className="flex flex-col items-center justify-center w-full lg:w-1/2 flex-1 text-center ">
     {children}
+    </main>
     <footer className="flex flex-col items-center justify-center pt-2 pb-12 bg-gray-200	w-screen h-full">
       <div className="flex flex-row items-center justify-center my-2">
           <a href={'https://github.com/theogainey'} className="px-2">
