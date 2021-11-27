@@ -31,6 +31,7 @@ const Block = ({type, paragraph, link_preview, heading_2, bookmark, heading_3, c
         let bm = annotateBookmark(bookmark)
         return React.createElement('span', {className: 'bookmark'}, [...bm] )
         break;
+        
       default:
         return React.createElement('div', null, `unsupported block`);;
         break;

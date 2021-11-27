@@ -6,8 +6,6 @@ import ProjectCard from '../components/ProjectCard'
 import {getSortedPostsData}  from '../lib/markdownToHtml'
 import {getDatabase} from '../lib/notion'
 
-
-
 const Home = ({projects}) => {
 
   return (

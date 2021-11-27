@@ -1,9 +1,13 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import {getPostsData} from '../../lib/markdownToHtml'
+const parse5 = require('parse5');
+
 export default async function handler(req, res) {
+  const {
+    query: { url},
+  } = req
+  const html={};
+  const fetchPromise = await fetch(url).then(data => html.string = data)
 
-  const allPostsData = await getPostsData('card-score')
-
-  return res.status(200).json(allPostsData);
+  return res.status(200).json({html});
 
 }

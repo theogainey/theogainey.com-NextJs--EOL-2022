@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .notion{
-  @apply w-full
+  @apply w-full text-left
 }
 .notion h2{
   @apply text-3xl font-bold my-2 py-2
