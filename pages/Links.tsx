@@ -3,31 +3,20 @@ import Head from 'next/head'
 import Layout from '../components/Layout'
 import {getBlocks, getPage} from '../lib/notion'
 import Block from '../components/Block'
-import Bookmark from '../components/Bookmark'
-import React from "react";
 import {parseOG} from '../lib/metatags'
 
 const LinkPage = ({pageProps, blocks}) => {
   return (
     <Layout>
       <Head>
-        <title>Theo Gainey </title>
+        <title>Theo Gainey - Helpful Links </title>
       </Head>
       <section  className="my-16 w-full">
-      <h1 className="text-4xl font-bold my-4 py-2">{pageProps.title.title[0].plain_text}</h1>
+      <h1 className="text-4xl font-bold my-4 py-2">Helpful Links</h1>
 
       <div className="notion">
       {blocks.map((block) =>
-        <React.Fragment key={block.id} >
-
-        {(block.type === 'bookmark')? (
-
-          <Bookmark {...block}/>
-        ):(
-
         <Block key={block.id}  {...block}/>
-        )}
-        </React.Fragment>
       )}
       </div>
       </section>
@@ -59,6 +48,15 @@ export const getStaticProps = async () => {
     if (block.type==='bookmark') {
       if (block.bookmark.url) {
         const og = await parseOG(block.bookmark.url)
+        return {...block, og: og}
+      }
+      else{
+        return block;
+      }
+    }
+    else if (block.type==='link_preview'){
+      if (block.link_preview.url) {
+        const og = await parseOG(block.link_preview.url)
         return {...block, og: og}
       }
       else{

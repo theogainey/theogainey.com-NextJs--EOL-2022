@@ -23,10 +23,3 @@ const ProjectCard = ({Description, Slug, GitHub, Created, Tags, Name}) => {
 }
 
 export default ProjectCard
-
-/*
-{Tags.multi_select.map((tag) =>
-  <Tag key={tag.id} {...tag}/>
-)}
-
-*/

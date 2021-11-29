@@ -17,9 +17,6 @@
 .notion p{
   @apply text-lg text-left my-2
 }
-.notion .bookmark{
-  @apply flex flex-row items-center justify-start text-lg text-left my-2
-}
 
 .notion a{
   @apply text-blue-500

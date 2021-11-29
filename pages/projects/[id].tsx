@@ -1,12 +1,9 @@
 import Head from 'next/head'
 import Layout from '../../components/Layout'
 import Block from '../../components/Block'
-import LinkPreview from '../../components/LinkPreview'
-import Bookmark from '../../components/Bookmark'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import {getAllPostIds, getPostsData } from '../../lib/markdownToHtml'
 import {getDatabase, getPage, getBlocks, getID} from '../../lib/notion'
-import React from "react";
 import {parseOG} from '../../lib/metatags'
 
 const Page = ({blocks, pageProps:{Description, Slug, GitHub, Demo, Name}}) => {
@@ -19,19 +16,7 @@ const Page = ({blocks, pageProps:{Description, Slug, GitHub, Demo, Name}}) => {
         <h1 className="text-4xl font-bold my-4 py-2">{Name.title[0].plain_text}</h1>
         <div className="notion">
         {blocks.map((block) =>
-          <React.Fragment key={block.id} >
-          {(block.type === 'link_preview')? (
-          <LinkPreview {...block} />
-          ):(
-            <>
-            {(block.type === 'bookmark')? (
-              <Bookmark {...block}/>
-            ):(
-              <Block {...block}/>
-            )}
-            </>
-          )}
-          </React.Fragment>
+          <Block key={block.id} {...block}/>
         )}
         </div>
         </section>

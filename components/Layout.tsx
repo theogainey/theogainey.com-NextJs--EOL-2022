@@ -2,17 +2,17 @@ import Link from 'next/link'
 
 const Layout = ({children}) => {
   return(
-    <div className="overflow-hidden flex flex-col items-center justify-center w-full px-10 min-h-screen bg-gray-50	">
+    <div className="flex flex-col items-center justify-center w-screen px-10 min-h-screen bg-gray-50	">
     <header>
-      <nav  className="absolute text-xl flex flex-row items-center justify-start mt-10 inset-0 px-10 lg:left-1/4 lg:px-2	  h-8 w-full bg-gray-50	">
+      <nav  className="	  h-8  bg-gray-50	 absolute text-xl flex flex-row items-center justify-start mt-10 inset-0 px-10 lg:left-1/4 lg:px-2	">
         <Link href={'/'}>
-          <a className="font-bold mx-2">Home</a>
+          <a className="font-bold px-2">Home</a>
         </Link>
         <Link href={'/#projects'}>
-          <a className="font-bold mx-2">Projects</a>
+          <a className="font-bold px-2">Projects</a>
         </Link>
         <Link href={'/Links'}>
-          <a className="font-bold  mx-2"> Links</a>
+          <a className="font-bold  px-2"> Links</a>
         </Link>
       </nav>
     </header>

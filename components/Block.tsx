@@ -1,6 +1,8 @@
 import React from 'react'
+import Bookmark from './Bookmark'
+import LinkPreview from './LinkPreview'
 
-const Block = ({type, paragraph, link_preview, heading_2, bookmark, heading_3, code, bulleted_list_item, numbered_list_item}) => {
+const Block = ({type, paragraph, link_preview, heading_2, bookmark, heading_3, code, bulleted_list_item, numbered_list_item, og}) => {
   const stateMachine = (type) =>{
     switch (type) {
       case "paragraph":
@@ -28,24 +30,15 @@ const Block = ({type, paragraph, link_preview, heading_2, bookmark, heading_3, c
         return React.createElement('ol', null, [...ol]);
         break;
       case "bookmark":
-        let bm = annotateBookmark(bookmark)
-        return React.createElement('span', {className: 'bookmark'}, [...bm] )
+        return React.createElement(Bookmark, {bookmark, og} )
         break;
-        
+      case "link_preview":
+        return React.createElement(LinkPreview, {link_preview, og} )
+        break;
       default:
         return React.createElement('div', null, `unsupported block`);;
         break;
     }
-  }
-  const annotateBookmark = (bookmark) =>{
-    return bookmark.caption.map((caption, index) =>{
-      if (bookmark.url ) {
-        return React.createElement('a', {href: bookmark.url, key:index}, caption.plain_text)
-      }
-      else{
-        return caption.plain_text
-      };
-    });
   }
 
   const annotate = (text) =>{
