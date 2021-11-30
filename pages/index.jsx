@@ -36,7 +36,7 @@ const Home = ({projects}) => {
     </Layout>
   )
 }
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps = async () => {
   const projectData = await getDatabase();
   return {
     props: {
