@@ -1,4 +1,3 @@
-import useSWR from "swr";
 import Image from 'next/image'
 //loader function allows to load images from src not defind in next.config
 const Bookmark =  ({bookmark, og}) => {

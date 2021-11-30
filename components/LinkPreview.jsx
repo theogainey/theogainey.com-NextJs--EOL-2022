@@ -1,4 +1,3 @@
-import useSWR from "swr";
 import Image from 'next/image'
 
 const LinkPreview =  ({link_preview, og}) => {
