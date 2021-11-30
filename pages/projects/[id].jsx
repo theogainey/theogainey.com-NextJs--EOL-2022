@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import Layout from '../../components/Layout'
 import Block from '../../components/Block'
-import { GetStaticProps, GetStaticPaths } from 'next'
-import {getAllPostIds, getPostsData } from '../../lib/markdownToHtml'
 import {getDatabase, getPage, getBlocks, getID} from '../../lib/notion'
 import {parseOG} from '../../lib/metatags'
 
@@ -84,7 +82,7 @@ export const getStaticProps = async (context) => {
       pageProps: page.properties,
       blocks: blocksWithChildren
     },
-    revalidate: 100,
+    revalidate: 10,
   };
 };
 

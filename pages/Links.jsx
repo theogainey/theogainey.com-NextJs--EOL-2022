@@ -1,4 +1,3 @@
-import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Layout from '../components/Layout'
 import {getBlocks, getPage} from '../lib/notion'
