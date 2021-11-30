@@ -25,7 +25,7 @@ const LinkPreview =  ({link_preview, og}) => {
     )}
       </>
     ):(
-      <p>loading</p>
+      <p>invaild input </p>
     )}
     </div>
   );
