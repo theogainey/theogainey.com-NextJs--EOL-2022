@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Layout from '../components/Layout'
 import ProjectCard from '../components/ProjectCard'
-import {getSortedPostsData}  from '../lib/markdownToHtml'
 import {getDatabase} from '../lib/notion'
 
 const Home = ({projects}) => {
