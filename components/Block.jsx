@@ -2,31 +2,31 @@ import React from 'react'
 import Bookmark from './Bookmark'
 import LinkPreview from './LinkPreview'
 
-const Block = ({type, paragraph, link_preview, heading_2, bookmark, heading_3, code, bulleted_list_item, numbered_list_item, og}) => {
+const Block = ({type, paragraph, link_preview, heading_1, heading_2, bookmark, heading_3, code, bulleted_list_item, numbered_list_item, og}) => {
   const stateMachine = (type) =>{
     switch (type) {
-      case "paragraph":
-        let p = annotate(paragraph.text)
-        return React.createElement('p', null, [...p]);
+      case "heading_1":
+        const h1 = heading_1.text.map(e=> {return annotate(e)})
+        return React.createElement('h1', null, [...h1]);
         break;
       case "heading_2":
-        let h2 = annotate(heading_2.text)
+        const h2 = heading_2.text.map(e=> {return annotate(e)})
         return React.createElement('h2', null, [...h2]);
         break;
       case "heading_3":
-        let h3 = annotate(heading_3.text)
+        const h3 = heading_3.text.map(e=> {return annotate(e)})
         return React.createElement('h3', null, [...h3]);
         break;
-      case "heading_1":
-        let h1 = annotate(heading_1.text)
-        return React.createElement('h1', null, [...h1]);
+      case "paragraph":
+        const p = paragraph.text.map(e=> {return annotate(e)})
+        return React.createElement('p', null, [...p]);
         break;
       case "bulleted_list_item":
-        let bi = annotate(bulleted_list_item.text)
+        const bi = bulleted_list_item.text.map(e=> {return annotate(e)})
         return React.createElement('li', null, [...bi]);
         break;
       case "numbered_list_item":
-        let ol = annotate(bulleted_list_item.text)
+        const ol = numbered_list_item.text.map(e=> {return annotate(e)})
         return React.createElement('ol', null, [...ol]);
         break;
       case "bookmark":
@@ -41,34 +41,35 @@ const Block = ({type, paragraph, link_preview, heading_2, bookmark, heading_3, c
     }
   }
 
-  const annotate = (text) =>{
-    return text.map((text, index) =>{
-      const props = {key: index, className:''}
-      if (text.annotations.bold) {
-        props.className = props.className.concat(" font-bold")
-      }
-      if (text.annotations.italic) {
-        props.className = props.className.concat(" italic")
-      }
-      if (text.annotations.strikethrough) {
-        props.className = props.className.concat(" line-through	")
-      }
-      if (text.annotations.underline) {
-        props.className = props.className.concat(" underline")
-      }
-      if (text.href ) {
-        props.href = text.href
-        return React.createElement('a', props, text.plain_text)
-      }
-      else{
-        if (props.className != '') {
-          return React.createElement('span', props, text.plain_text)
-        }
-        else {
-          return text.plain_text
-        }
-      };
-    });
+  const annotate = (element) =>{
+    if (element.href ) {
+      const childDef = {...element, href: null}
+      const childElement = annotate(childDef)
+      return React.createElement('a', {key:1, href: element.href}, childElement)
+    }
+    if (element.annotations.bold) {
+      const childDef = {...element, annotations:{...element.annotations, bold: null}}
+      const childElement = annotate(childDef)
+      return React.createElement('strong', {key:2}, childElement)
+    }
+    if (element.annotations.italic) {
+      const childDef = {...element, annotations:{...element.annotations, italic: null}}
+      const childElement = annotate(childDef)
+      return React.createElement('i', {key:3}, childElement)
+    }
+    if (element.annotations.strikethrough) {
+      const childDef = {...element, annotations:{...element.annotations, strikethrough: null}}
+      const childElement = annotate(childDef)
+      return React.createElement('s', {key:4}, childElement)
+    }
+    if (element.annotations.underline) {
+      const childDef = {...element, annotations:{...element.annotations, underline: null}}
+      const childElement = annotate(childDef)
+      return React.createElement('u', {key:5},  childElement)
+    }
+    else {
+      return element.plain_text
+    }
   }
 
   return (
