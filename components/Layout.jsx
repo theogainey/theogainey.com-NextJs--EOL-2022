@@ -11,7 +11,7 @@ const Layout = ({children}) => {
         <Link href={'/#projects'}>
           <a className="font-bold px-2">Projects</a>
         </Link>
-        <Link href={'/Links'}>
+        <Link href={'/HelpfulLinks'}>
           <a className="font-bold  px-2"> Links</a>
         </Link>
       </nav>

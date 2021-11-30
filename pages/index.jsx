@@ -9,6 +9,20 @@ const Home = ({projects}) => {
   return (
     <Layout>
       <Head>
+        <link rel="canonical" href="https://theogainey.com" key="canonical"/>
+        <meta name="description" content="Theo Gainey - Full Stack Developer"/>
+        <meta property="og:title" content="Theo Gainey" />
+        <meta property="og:site_name" content="Theo Gainey"/>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://theogainey.com" />
+        <meta property="og:description" content="Theo Gainey - Full Stack Developer"/>
+        <meta property="og:image" content="https://theogainey.com/profile.png"/>
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:creator" content="@GaineyTheo" />
+        <meta name="twitter:image" content="https://theogainey.com/profile.png"/>
+        <meta name="twitter:image:alt" content="Theo Gainey "/>
+        <meta name="twitter:title" content="Theo Gainey"  />
+        <meta name="twitter:description" content="Theo Gainey - Full Stack Developer"/>
         <title>Theo Gainey </title>
       </Head>
         <section id={'about'} className="h-screen flex flex-col items-center justify-center">

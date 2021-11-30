@@ -8,6 +8,17 @@ const LinkPage = ({pageProps, blocks}) => {
   return (
     <Layout>
       <Head>
+        <link rel="canonical" href="https://theogainey.com/HelpfulLinks" key="canonical"/>
+        <meta name="description" content="Links To Helpful Reasources"/>
+        <meta property="og:title" content="Theo Gainey - Helpful Links" />
+        <meta property="og:site_name" content="Theo Gainey"/>
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://theogainey.com/HelpfulLinks" />
+        <meta property="og:description" content="Links To Helpful Reasources"/>
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta name="twitter:creator" content="@GaineyTheo" />
+        <meta name="twitter:title" content="Theo Gainey - Helpful Links"  />
+        <meta name="twitter:description" content="Links To Helpful Reasources"/>
         <title>Theo Gainey - Helpful Links </title>
       </Head>
       <section  className="my-16 w-full">
@@ -77,7 +88,7 @@ export const getStaticProps = async () => {
       pageProps: page.properties,
       blocks: blocksWithChildren
     },
-    revalidate: 1000,
+    revalidate: 10,
   };
 };
 
