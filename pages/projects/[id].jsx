@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Layout from '../../components/Layout'
 import Block from '../../components/Block'
-import {getDatabase, getPage, getBlocks, getID} from '../../lib/notion'
+import {getDatabase, getPage, getBlocks} from '../../lib/notion'
 import {parseOG} from '../../lib/metatags'
 
 const Page = ({blocks, pageProps:{description, slug, Name}}) => {
@@ -9,7 +9,7 @@ const Page = ({blocks, pageProps:{description, slug, Name}}) => {
     <Layout>
       <Head>
         {description &&(<link rel="canonical" href={`https://theogainey.com/projects/${slug.rich_text[0].plain_text}`} key="canonical"/>)}
-        <meta name="description" content={description.rich_text[0].plain_text}/>
+        {description && (<meta name="description" content={description.rich_text[0].plain_text}/>)}
         <meta property="og:title" content={Name.title[0].plain_text}/>
         <meta property="og:site_name" content="Theo Gainey"/>
         <meta property="og:type" content="article" />
@@ -18,7 +18,7 @@ const Page = ({blocks, pageProps:{description, slug, Name}}) => {
         <meta name="twitter:card" content="summary_large_image"/>
         <meta name="twitter:creator" content="@GaineyTheo" />
         <meta name="twitter:title" content={Name.title[0].plain_text} />
-        <meta name="twitter:description" content={description.rich_text[0].plain_text}/>
+        {description && (<meta name="twitter:description" content={description.rich_text[0].plain_text}/>)}
         <title>{Name.title[0].plain_text} </title>
       </Head>
       <section  className="my-16 w-full">
@@ -37,15 +37,14 @@ export const getStaticPaths = async () => {
   const database = await getDatabase(process.env.PROJECT_DB);
   return {
     paths: database.map((page) => ({ params: { id: page.properties.slug.rich_text[0].plain_text } })),
-    fallback: true,
+    fallback: false,
   };
 };
 
 export const getStaticProps = async (context) => {
   const { id } = context.params;
-  const pageID = await getID(id)
-  const page = await getPage(pageID);
-  const blocks = await getBlocks(pageID);
+  const page = await getPage(id);
+  const blocks = await getBlocks(page.id);
   const childBlocks = await Promise.all(
     blocks
       .filter((block) => block.has_children)

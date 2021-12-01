@@ -6,7 +6,7 @@ const notion = new Client({
 
 export const getDatabase = async () => {
   const response = await notion.databases.query({
-    database_id: process.env.PROJECT_DB,
+    database_id: `${process.env.PROJECT_DB}`,
     sorts: [
       {
         property: 'created',
@@ -17,28 +17,21 @@ export const getDatabase = async () => {
   return response.results;
 };
 
-export const getID = async (pageSlug) => {
+
+export const getPage = async (pageSlug:string) => {
   const response = await notion.databases.query({
-    database_id: process.env.PROJECT_DB,
-  });
-  let pageID;
-  for (var i = 0; i < response.results.length; i++) {
-    let temp = response.results[i]
-    if (temp.properties.slug.rich_text[0].plain_text === pageSlug) {
-      pageID = temp.id
+    database_id: `${process.env.PROJECT_DB}`,
+    filter: {
+      property: "slug",
+      text: {
+        contains: `${pageSlug}`
+      }
     }
-  }
-
-  return pageID;
+  });
+  return response.results[0];
 };
 
-
-export const getPage = async (pageId) => {
-  const response = await notion.pages.retrieve({ page_id: pageId });
-  return response;
-};
-
-export const getBlocks = async (blockId) => {
+export const getBlocks = async (blockId: string) => {
   const response = await notion.blocks.children.list({
     block_id: blockId,
     page_size: 50,

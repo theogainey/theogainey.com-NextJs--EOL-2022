@@ -4,7 +4,7 @@ import {getBlocks, getPage} from '../lib/notion'
 import Block from '../components/Block'
 import {parseOG} from '../lib/metatags'
 
-const LinkPage = ({pageProps, blocks}) => {
+const LinkPage = ({blocks}) => {
   return (
     <Layout>
       <Head>
@@ -36,7 +36,6 @@ const LinkPage = ({pageProps, blocks}) => {
 
 
 export const getStaticProps = async () => {
-  const page = await getPage(process.env.LINK_PAGE);
   const blocks = await getBlocks(process.env.LINK_PAGE);
   const childBlocks = await Promise.all(
     blocks
@@ -85,7 +84,6 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      pageProps: page.properties,
       blocks: blocksWithChildren
     },
     revalidate: 10,
