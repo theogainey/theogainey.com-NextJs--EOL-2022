@@ -4,23 +4,21 @@ import Block from '../../components/Block'
 import {getDatabase, getPage, getBlocks, getID} from '../../lib/notion'
 import {parseOG} from '../../lib/metatags'
 
-//need og image
-
 const Page = ({blocks, pageProps:{description, slug, Name}}) => {
   return (
     <Layout>
       <Head>
-        {description &&(<link rel="canonical" href={`https://theogainey.com/projects/${description}`} key="canonical"/>)}
-        <meta name="description" content={description}/>
+        {description &&(<link rel="canonical" href={`https://theogainey.com/projects/${slug.rich_text[0].plain_text}`} key="canonical"/>)}
+        <meta name="description" content={description.rich_text[0].plain_text}/>
         <meta property="og:title" content={Name.title[0].plain_text}/>
         <meta property="og:site_name" content="Theo Gainey"/>
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://theogainey.com/projects/${description}`}/>
+        <meta property="og:url" content={`https://theogainey.com/projects/${slug.rich_text[0].plain_text}`}/>
         <meta property="og:description" content={description.rich_text[0].plain_text}/>
         <meta name="twitter:card" content="summary_large_image"/>
         <meta name="twitter:creator" content="@GaineyTheo" />
         <meta name="twitter:title" content={Name.title[0].plain_text} />
-        <meta name="twitter:description" content={description}/>
+        <meta name="twitter:description" content={description.rich_text[0].plain_text}/>
         <title>{Name.title[0].plain_text} </title>
       </Head>
       <section  className="my-16 w-full">
@@ -39,7 +37,7 @@ export const getStaticPaths = async () => {
   const database = await getDatabase(process.env.PROJECT_DB);
   return {
     paths: database.map((page) => ({ params: { id: page.properties.slug.rich_text[0].plain_text } })),
-    fallback: false,
+    fallback: true,
   };
 };
 

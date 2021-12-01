@@ -3,7 +3,7 @@ import Bookmark from './Bookmark'
 import LinkPreview from './LinkPreview'
 
 const Block = ({type, paragraph, link_preview, heading_1, heading_2, bookmark, heading_3, code, bulleted_list_item, numbered_list_item, og}) => {
-  const stateMachine = (type) =>{
+  const blockElement = (type) =>{
     switch (type) {
       case "heading_1":
         const h1 = heading_1.text.map(e=> {return annotate(e)})
@@ -73,7 +73,7 @@ const Block = ({type, paragraph, link_preview, heading_1, heading_2, bookmark, h
   }
 
   return (
-    stateMachine(type)
+    blockElement(type)
   )
 }
 
