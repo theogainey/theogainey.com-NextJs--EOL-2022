@@ -7,6 +7,12 @@ const notion = new Client({
 export const getDatabase = async () => {
   const response = await notion.databases.query({
     database_id: `${process.env.PROJECT_DB}`,
+    filter: {
+      property: "slug",
+      text: {
+        is_not_empty: true
+      }
+    },
     sorts: [
       {
         property: 'created',
