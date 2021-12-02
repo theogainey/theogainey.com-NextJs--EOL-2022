@@ -1,7 +1,11 @@
 import { parseISO, format } from 'date-fns'
 
+type DateProps = {
+  date: string;
+}
 
-const FormatedDate = ({ date }) => {
+
+const FormatedDate = ({ date }:DateProps) => {
   const dateParsed = parseISO(date)
   return (
     <div className="text-gray-400	 text-left">

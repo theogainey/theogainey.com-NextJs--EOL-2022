@@ -43,28 +43,28 @@ const Block = ({type, paragraph, link_preview, heading_1, heading_2, bookmark, h
 
   const annotate = (element) =>{
     if (element.href ) {
-      const childDef = {...element, href: null}
-      const childElement = annotate(childDef)
+      const childProps = {...element, href: null}
+      const childElement = annotate(childProps)
       return React.createElement('a', {key:1, href: element.href}, childElement)
     }
     if (element.annotations.bold) {
-      const childDef = {...element, annotations:{...element.annotations, bold: null}}
-      const childElement = annotate(childDef)
+      const childProps = {...element, annotations:{...element.annotations, bold: null}}
+      const childElement = annotate(childProps)
       return React.createElement('strong', {key:2}, childElement)
     }
     if (element.annotations.italic) {
-      const childDef = {...element, annotations:{...element.annotations, italic: null}}
-      const childElement = annotate(childDef)
+      const childProps = {...element, annotations:{...element.annotations, italic: null}}
+      const childElement = annotate(childProps)
       return React.createElement('i', {key:3}, childElement)
     }
     if (element.annotations.strikethrough) {
-      const childDef = {...element, annotations:{...element.annotations, strikethrough: null}}
-      const childElement = annotate(childDef)
+      const childProps = {...element, annotations:{...element.annotations, strikethrough: null}}
+      const childElement = annotate(childProps)
       return React.createElement('s', {key:4}, childElement)
     }
     if (element.annotations.underline) {
-      const childDef = {...element, annotations:{...element.annotations, underline: null}}
-      const childElement = annotate(childDef)
+      const childProps = {...element, annotations:{...element.annotations, underline: null}}
+      const childElement = annotate(childProps)
       return React.createElement('u', {key:5},  childElement)
     }
     else {

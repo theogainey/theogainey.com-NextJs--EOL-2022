@@ -3,6 +3,7 @@ import Layout from '../components/Layout'
 import {getBlocks, getPage} from '../lib/notion'
 import Block from '../components/Block'
 import {parseOG} from '../lib/metatags'
+import { GetStaticProps } from 'next'
 
 const LinkPage = ({blocks}) => {
   return (
@@ -35,7 +36,7 @@ const LinkPage = ({blocks}) => {
 }
 
 
-export const getStaticProps = async () => {
+export const getStaticProps:GetStaticProps = async () => {
   const blocks = await getBlocks(process.env.LINK_PAGE);
   const childBlocks = await Promise.all(
     blocks

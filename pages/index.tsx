@@ -1,3 +1,4 @@
+import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Layout from '../components/Layout'
@@ -48,7 +49,7 @@ const Home = ({projects}) => {
     </Layout>
   )
 }
-export const getStaticProps = async () => {
+export const getStaticProps:GetStaticProps = async () => {
   const projectData = await getDatabase();
   return {
     props: {

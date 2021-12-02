@@ -1,6 +1,12 @@
+import { ReactNode } from 'react'
 import Link from 'next/link'
 
-const Layout = ({children}) => {
+type LayoutProps = {
+    children?: ReactNode
+}
+
+
+const Layout = ({children}: LayoutProps) => {
   return(
     <div className="flex flex-col items-center justify-center  px-10 min-h-screen bg-gray-50	overflow-hidden	">
       <header>

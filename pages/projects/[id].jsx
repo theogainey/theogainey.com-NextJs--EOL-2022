@@ -34,7 +34,7 @@ const Page = ({blocks, pageProps:{description, slug, Name}}) => {
 }
 
 export const getStaticPaths = async () => {
-  const database = await getDatabase(process.env.PROJECT_DB);
+  const database = await getDatabase();
   return {
     paths: database.map((page) => ({ params: { id: page.properties.slug.rich_text[0].plain_text } })),
     fallback: false,

@@ -1,13 +1,13 @@
-// need fallbacks
-
 const axios = require('axios');
+type OgTags = {
+   [key: string]: string;
+}
 
-
-export async function parseOG(url) {
-  const contents = await axios.request({ url }).then(res=> {return res.data});
-  const parsed = contents.split('>').map(e=>e.trim()).filter(e=>e.length > 0)
-  const ogtags ={}
-  parsed.forEach(e=>{
+export async function parseOG(url:string) {
+  const contents = await axios.request({ url }).then((res:any):any => {return res.data});
+  const parsed = contents.split('>').map((e:string)=>e.trim()).filter((e:string)=>e.length > 0)
+  const ogtags: OgTags ={}
+  parsed.forEach((e:string)=>{
     if (e.charAt(0).match(/[<]/)) {
       let value = e.slice(1)
       if (value.charAt(0)!='/') {
@@ -17,9 +17,6 @@ export async function parseOG(url) {
           if (tag ) {
             if (content) {
               ogtags[tag[1]] = content[1]
-            }
-            else {
-              ogtags[tag[1]]= content
             }
           }
         }
