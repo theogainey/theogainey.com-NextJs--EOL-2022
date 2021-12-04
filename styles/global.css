@@ -12,7 +12,7 @@
   @apply  text-xl font-bold my-2 py-2
 }
 .notion li{
-  @apply text-lg font-bold text-left
+  @apply text-xl font-bold  text-left
 }
 .notion p{
   @apply text-lg text-left my-2

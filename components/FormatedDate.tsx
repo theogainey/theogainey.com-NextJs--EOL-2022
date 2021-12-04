@@ -8,7 +8,7 @@ type DateProps = {
 const FormatedDate = ({ date }:DateProps) => {
   const dateParsed = parseISO(date)
   return (
-    <div className="text-gray-400	 text-left">
+    <div className="text-gray-500	text-left">
       <time  dateTime={date}>{format(dateParsed, 'LLLL d, yyyy')}</time>
     </div>
   )
