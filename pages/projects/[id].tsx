@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import {GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
 import Layout from '../../components/Layout'
@@ -7,11 +6,7 @@ import {getDatabase, getPage, getBlocks} from '../../lib/notion'
 import {parseOG} from '../../lib/metatags'
 
 const Page = ({blocks, pageProps:{description, slug, Name}}: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const router = useRouter()
 
-  if (router.isFallback) {
-    return <div>Loading...</div>
-  }
   return (
     <Layout>
       <Head>
@@ -44,7 +39,7 @@ export const getStaticPaths:GetStaticPaths = async () => {
   const database = await getDatabase();
   return {
     paths: database.map((page) => ({ params: { id: page.properties.slug['rich_text'][0].plain_text } })),
-    fallback: true,
+    fallback: 'blocking',
   };
 };
 
