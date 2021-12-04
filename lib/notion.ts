@@ -24,7 +24,7 @@ export const getDatabase = async () => {
 };
 
 
-export const getPage = async (pageSlug:string) => {
+export const getPage = async (pageSlug:string | string[]) => {
   const response = await notion.databases.query({
     database_id: `${process.env.PROJECT_DB}`,
     filter: {

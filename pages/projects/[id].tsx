@@ -1,25 +1,32 @@
+import { useRouter } from 'next/router'
+import {GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
 import Layout from '../../components/Layout'
 import Block from '../../components/Block'
 import {getDatabase, getPage, getBlocks} from '../../lib/notion'
 import {parseOG} from '../../lib/metatags'
 
-const Page = ({blocks, pageProps:{description, slug, Name}}) => {
+const Page = ({blocks, pageProps:{description, slug, Name}}: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const router = useRouter()
+
+  if (router.isFallback) {
+    return <div>Loading...</div>
+  }
   return (
     <Layout>
       <Head>
-        {description &&(<link rel="canonical" href={`https://theogainey.com/projects/${slug.rich_text[0].plain_text}`} key="canonical"/>)}
-        {description && (<meta name="description" content={description.rich_text[0].plain_text}/>)}
-        <meta property="og:title" content={Name.title[0].plain_text}/>
+        {slug &&(<link rel="canonical" href={`https://theogainey.com/projects/${slug['rich_text'][0].plain_text}`} key="canonical"/>)}
+        {description && (<meta name="description" content={description['rich_text'][0].plain_text}/>)}
+        {Name && (<meta property="og:title" content={Name.title[0].plain_text}/>)}
         <meta property="og:site_name" content="Theo Gainey"/>
         <meta property="og:type" content="article" />
-        <meta property="og:url" content={`https://theogainey.com/projects/${slug.rich_text[0].plain_text}`}/>
-        <meta property="og:description" content={description.rich_text[0].plain_text}/>
+        {slug && (<meta property="og:url" content={`https://theogainey.com/projects/${slug['rich_text'][0].plain_text}`}/>)}
+        {description && (<meta property="og:description" content={description['rich_text'][0].plain_text}/>)}
         <meta name="twitter:card" content="summary_large_image"/>
         <meta name="twitter:creator" content="@GaineyTheo" />
-        <meta name="twitter:title" content={Name.title[0].plain_text} />
-        {description && (<meta name="twitter:description" content={description.rich_text[0].plain_text}/>)}
-        <title>{Name.title[0].plain_text} </title>
+        {Name && (<meta name="twitter:title" content={Name.title[0].plain_text} />)}
+        {description && (<meta name="twitter:description" content={description['rich_text'][0].plain_text}/>)}
+        {Name && (<title>{Name.title[0].plain_text} </title>)}
       </Head>
       <section  className="my-16 w-full">
         <h1 className="text-4xl font-bold my-4 py-2">{Name.title[0].plain_text}</h1>
@@ -33,15 +40,15 @@ const Page = ({blocks, pageProps:{description, slug, Name}}) => {
   )
 }
 
-export const getStaticPaths = async () => {
+export const getStaticPaths:GetStaticPaths = async () => {
   const database = await getDatabase();
   return {
     paths: database.map((page) => ({ params: { id: page.properties.slug['rich_text'][0].plain_text } })),
-    fallback: false,
+    fallback: true,
   };
 };
 
-export const getStaticProps = async (context) => {
+export const getStaticProps:GetStaticProps = async (context) => {
   const { id } = context.params;
   const page = await getPage(id);
   const blocks = await getBlocks(page.id);

@@ -3,9 +3,9 @@ import Layout from '../components/Layout'
 import {getBlocks, getPage} from '../lib/notion'
 import Block from '../components/Block'
 import {parseOG} from '../lib/metatags'
-import { GetStaticProps } from 'next'
+import { GetStaticProps, InferGetStaticPropsType } from 'next'
 
-const LinkPage = ({blocks}) => {
+const LinkPage = ({blocks}: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <Layout>
       <Head>

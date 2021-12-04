@@ -1,11 +1,11 @@
-import { GetStaticProps } from 'next'
+import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Layout from '../components/Layout'
 import ProjectCard from '../components/ProjectCard'
 import {getDatabase} from '../lib/notion'
 
-const Home = ({projects}) => {
+const Home = ({projects}: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   return (
     <Layout>
@@ -40,7 +40,7 @@ const Home = ({projects}) => {
           <span className="text-xl">Sparkbox </span>
           <p className="text-xl">Jan 2022 - present </p>
         </section>
-        <section id={'projects'} className="flex flex-col items-center justify-start w-full mb-6">
+        <section id={'projects'} className="flex flex-col items-start justify-start w-full mb-6">
           <h2 className="text-4xl font-bold mb-4 ">Projects</h2>
           {projects.map((project) =>
             <ProjectCard key={project.id} {...project.properties}/>

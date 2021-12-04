@@ -6,7 +6,7 @@ const LinkPreview =  ({link_preview, og}) => {
   }
 
   return (
-    <div className=" p-1 pb-0 bg-gray-300	rounded-lg shadow">
+    <div className="rounded-lg shadow">
     {og? (
       <>
     {og.image &&(
@@ -24,7 +24,7 @@ const LinkPreview =  ({link_preview, og}) => {
     )}
       </>
     ):(
-      <p>invaild input </p>
+      <p>No Link Preview Available</p>
     )}
     </div>
   );
