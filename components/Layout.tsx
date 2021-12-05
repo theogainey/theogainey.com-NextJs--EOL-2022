@@ -10,7 +10,7 @@ const Layout = ({children}: LayoutProps) => {
   return(
     <div className="flex flex-col items-center justify-center  px-10 min-h-screen bg-gray-50	overflow-hidden	">
       <header>
-        <nav className="h-8  bg-gray-50	 absolute text-xl flex flex-row items-center justify-start mt-10 inset-0 px-10 lg:left-1/4 lg:px-2	">
+        <nav className="h-8  bg-gray-50	 absolute text-xl flex flex-row items-start justify-start mt-10 inset-0 px-10 lg:left-1/4 lg:px-2	">
           <Link href={'/'}>
             <a className="font-bold ">Home</a>
           </Link>

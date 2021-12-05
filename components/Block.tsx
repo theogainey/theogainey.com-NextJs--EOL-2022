@@ -22,8 +22,12 @@ const Block = ({type, paragraph, link_preview, heading_1, heading_2, bookmark, h
         return React.createElement('p', null, [...p]);
         break;
       case "bulleted_list_item":
-        const bi = bulleted_list_item.text.map(e=> {return annotate(e)})
-        return React.createElement('li', null, [...bi]);
+        if (bulleted_list_item.children) {
+          const bl = bulleted_list_item.children.map(e=>  e.bulleted_list_item.text.map(e=> {return annotate(e)}))
+          const li = bl.map((e, i)=> {return React.createElement('li', {key: i}, [...e])})
+          return React.createElement('ul', null, [...li]);
+        }
+        else return 'list format not supported'
         break;
       case "numbered_list_item":
         const ol = numbered_list_item.text.map(e=> {return annotate(e)})

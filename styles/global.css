@@ -11,6 +11,9 @@
 .notion h3{
   @apply  text-xl font-bold my-2 py-2
 }
+.notion ul{
+  @apply list-inside list-disc	
+}
 .notion li{
   @apply text-xl font-bold  text-left
 }
