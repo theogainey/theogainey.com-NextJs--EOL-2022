@@ -1,7 +1,7 @@
-## theogainey.com 
+## theogainey.com
 - Framework - [Next.js](https://nextjs.org/)
 - CSS  - [Tailwind CSS](https://tailwindcss.com/)
-- Content - [Notion API](https://developers.notion.com/)
+- Content - [Notion](https://developers.notion.com/)
 - Deployment - [Vercel](https://vercel.com/)
 
 ## Learn More
