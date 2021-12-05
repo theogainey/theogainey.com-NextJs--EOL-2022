@@ -5,4 +5,4 @@
 - Deployment - [Vercel](https://vercel.com/)
 
 ## Learn More
-For more about this project please visit [theogainey.com/Personal-Website](https://www.theogainey.com/projects/Personal-Website)
+For more about this project please visit [theogainey.com/projects/theogainey-dot-com](https://www.theogainey.com/projects/theogainey-dot-com)
