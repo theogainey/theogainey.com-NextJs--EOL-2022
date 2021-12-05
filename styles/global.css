@@ -12,8 +12,12 @@
   @apply  text-xl font-bold my-2 py-2
 }
 .notion ul{
-  @apply list-inside list-disc	
+  @apply list-inside list-disc
 }
+.notion ol{
+  @apply list-inside list-decimal		
+}
+
 .notion li{
   @apply text-xl font-bold  text-left
 }

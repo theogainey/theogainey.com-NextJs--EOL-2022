@@ -22,16 +22,28 @@ const Block = ({type, paragraph, link_preview, heading_1, heading_2, bookmark, h
         return React.createElement('p', null, [...p]);
         break;
       case "bulleted_list_item":
+        const item = bulleted_list_item.text.map(e=> {return annotate(e)})
+        const itemElement = React.createElement('li', {key: 'f'}, [...item])
         if (bulleted_list_item.children) {
-          const bl = bulleted_list_item.children.map(e=>  e.bulleted_list_item.text.map(e=> {return annotate(e)}))
-          const li = bl.map((e, i)=> {return React.createElement('li', {key: i}, [...e])})
-          return React.createElement('ul', null, [...li]);
+          const childItems = bulleted_list_item.children.map(e=>  e.bulleted_list_item.text.map(e=> {return annotate(e)}))
+          const childElements = childItems.map((e, i)=> {return React.createElement('li', {key: i}, [...e])})
+          return React.createElement('ul', null, [itemElement, ...childElements])
         }
-        else return React.createElement('p', null, 'list format not supported')
+        else {
+          return React.createElement('ul', null, itemElement)
+        }
         break;
       case "numbered_list_item":
-        const ol = numbered_list_item.text.map(e=> {return annotate(e)})
-        return React.createElement('ol', null, [...ol]);
+        const nItem = numbered_list_item.text.map(e=> {return annotate(e)})
+        const nItemElement = React.createElement('li', {key: 'f'}, [...nItem])
+        if (numbered_list_item.children) {
+          const nChildItems = numbered_list_item.children.map(e=>  e.numbered_list_item.text.map(e=> {return annotate(e)}))
+          const nChildElements = nChildItems.map((e, i)=> {return React.createElement('li', {key: i}, [...e])})
+          return React.createElement('ol', null, [nItemElement, ...nChildElements])
+        }
+        else {
+          return React.createElement('ol', null, nItemElement);  
+        }
         break;
       case "bookmark":
         return React.createElement(Bookmark, {bookmark, og} )
