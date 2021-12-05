@@ -5,20 +5,15 @@ type OgTags = {
 
 export async function parseOG(url:string) {
   const contents = await axios.request({ url }).then((res:any):any => {return res.data});
-  const parsed = contents.split('>').map((e:string)=>e.trim()).filter((e:string)=>e.length > 0)
+  const tokens = contents.split('>').map((e:string)=>e.trim()).filter((e:string)=>e.length > 0)
   const ogtags: OgTags ={}
-  parsed.forEach((e:string)=>{
-    if (e.charAt(0).match(/[<]/)) {
-      let value = e.slice(1)
-      if (value.charAt(0)!='/') {
-        if (value.match(/og:/)) {
-          const tag = value.match(/"og:(\w+)"/)
-          const content = value.match(/content="(.+)"/)
-          if (tag ) {
-            if (content) {
-              ogtags[tag[1]] = content[1]
-            }
-          }
+  tokens.forEach((e:string)=>{
+    if (e.charAt(0).match(/[<]/) && e.charAt(1)!='/') {
+      if (e.match(/og:/)) {
+        const tag = e.match(/"og:(\w+)"/)
+        const content = e.match(/content="(.+)"/)
+        if (tag && content) {
+            ogtags[tag[1]] = content[1]
         }
       }
     }
