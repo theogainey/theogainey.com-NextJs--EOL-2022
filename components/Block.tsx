@@ -27,7 +27,7 @@ const Block = ({type, paragraph, link_preview, heading_1, heading_2, bookmark, h
           const li = bl.map((e, i)=> {return React.createElement('li', {key: i}, [...e])})
           return React.createElement('ul', null, [...li]);
         }
-        else return 'list format not supported'
+        else return React.createElement('p', null, 'list format not supported')
         break;
       case "numbered_list_item":
         const ol = numbered_list_item.text.map(e=> {return annotate(e)})
