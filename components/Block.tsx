@@ -2,7 +2,7 @@ import React from 'react'
 import Bookmark from './Bookmark'
 import LinkPreview from './LinkPreview'
 
-const Block = ({type, paragraph, link_preview, heading_1, heading_2, bookmark, heading_3, code, bulleted_list_item, numbered_list_item, og}) => {
+const Block = ({type, quote, paragraph, link_preview, heading_1, heading_2, bookmark, heading_3, code, bulleted_list_item, numbered_list_item, og}) => {
   const blockElement = (type) =>{
     switch (type) {
       case "heading_1":
@@ -20,6 +20,10 @@ const Block = ({type, paragraph, link_preview, heading_1, heading_2, bookmark, h
       case "paragraph":
         const p = paragraph.text.map(e=> {return annotate(e)})
         return React.createElement('p', null, [...p]);
+        break;
+      case "quote":
+        const q = quote.text.map(e=> {return annotate(e)})
+        return React.createElement('blockquote', null, [...q]);
         break;
       case "bulleted_list_item":
         const item = bulleted_list_item.text.map(e=> {return annotate(e)})
@@ -42,7 +46,7 @@ const Block = ({type, paragraph, link_preview, heading_1, heading_2, bookmark, h
           return React.createElement('ol', null, [nItemElement, ...nChildElements])
         }
         else {
-          return React.createElement('ol', null, nItemElement);  
+          return React.createElement('ol', null, nItemElement);
         }
         break;
       case "bookmark":
@@ -50,6 +54,9 @@ const Block = ({type, paragraph, link_preview, heading_1, heading_2, bookmark, h
         break;
       case "link_preview":
         return React.createElement(LinkPreview, {link_preview, og} )
+        break;
+      case "divider":
+        return React.createElement('hr', null);
         break;
       default:
         return React.createElement('div', null, `unsupported block`);;
