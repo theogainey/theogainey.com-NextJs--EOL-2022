@@ -5,7 +5,7 @@ import Block from '../../components/Block'
 import {getDatabase, getPage, getBlocks} from '../../lib/notion'
 import {parseOG} from '../../lib/metatags'
 
-const Page = ({blocks, pageProps:{description, slug, Name}}: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Page = ({blocks, pageProps:{description, slug, Name, image}}: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   return (
     <Layout>
@@ -17,8 +17,11 @@ const Page = ({blocks, pageProps:{description, slug, Name}}: InferGetStaticProps
         <meta property="og:type" content="article" />
         {slug && (<meta property="og:url" content={`https://theogainey.com/projects/${slug['rich_text'][0].plain_text}`}/>)}
         {description && (<meta property="og:description" content={description['rich_text'][0].plain_text}/>)}
+        {image &&(<meta property="og:image" content={`https://theogainey.com/${image.rich_text[0].plain_text}`}/>)}
         <meta name="twitter:card" content="summary_large_image"/>
         <meta name="twitter:creator" content="@GaineyTheo" />
+        {image &&(<meta name="twitter:image" content={`https://theogainey.com/${image.rich_text[0].plain_text}`}/>)}
+        {image &&(<meta name="twitter:image:alt" content={`Theo Gainey - ${Name.title[0].plain_text}`}/>)}
         {Name && (<meta name="twitter:title" content={Name.title[0].plain_text} />)}
         {description && (<meta name="twitter:description" content={description['rich_text'][0].plain_text}/>)}
         {Name && (<title>{Name.title[0].plain_text} </title>)}

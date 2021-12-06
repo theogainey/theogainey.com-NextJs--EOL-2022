@@ -17,10 +17,10 @@ const Home = ({projects}: InferGetStaticPropsType<typeof getStaticProps>) => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://theogainey.com" />
         <meta property="og:description" content="Theo Gainey - Full Stack Developer"/>
-        <meta property="og:image" content="https://theogainey.com/profile.png"/>
+        <meta property="og:image" content="https://theogainey.com/Theo-Gainey.png"/>
         <meta name="twitter:card" content="summary_large_image"/>
         <meta name="twitter:creator" content="@GaineyTheo" />
-        <meta name="twitter:image" content="https://theogainey.com/profile.png"/>
+        <meta name="twitter:image" content="https://theogainey.com/Theo-Gainey.png"/>
         <meta name="twitter:image:alt" content="Theo Gainey "/>
         <meta name="twitter:title" content="Theo Gainey"  />
         <meta name="twitter:description" content="Theo Gainey - Full Stack Developer"/>
