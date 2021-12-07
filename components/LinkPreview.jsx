@@ -6,7 +6,7 @@ const LinkPreview =  ({link_preview, og}) => {
   }
 
   return (
-    <div className="rounded-lg shadow">
+    <div >
     {og? (
       <>
     {og.image &&(
@@ -17,7 +17,7 @@ const LinkPreview =  ({link_preview, og}) => {
         src={og.image}
         height={320 }
         width={640 }
-        className={'p-2 border rounded'}
+        className={'p-2 border rounded-lg'}
         alt={og.title}
       />
       </a>

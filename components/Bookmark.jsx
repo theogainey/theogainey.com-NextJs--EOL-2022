@@ -7,7 +7,7 @@ const Bookmark =  ({bookmark, og}) => {
   }
 
   return (
-    <div className="p-1 pb-0 text-left border bg-white rounded-lg my-4 shadow">
+    <div className="p-1 pb-0 text-left border bg-white rounded-lg my-4">
     {og? (
       <a  href={bookmark.url}>
       {og.image? (

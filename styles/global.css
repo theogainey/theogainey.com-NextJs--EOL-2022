@@ -5,6 +5,10 @@
 .notion{
   @apply w-full text-left
 }
+.notion a{
+  @apply text-blue-500
+}
+
 .notion h2{
   @apply text-3xl font-bold my-2 py-2
 }
@@ -15,17 +19,17 @@
   @apply list-inside list-disc
 }
 .notion ol{
-  @apply list-inside list-decimal		
+  @apply list-inside list-decimal
 }
 
 .notion li{
   @apply text-xl font-bold  text-left
 }
 .notion p{
-  @apply text-lg text-left my-2
+  @apply text-lg  text-left my-2
 }
-.notion a{
-  @apply text-blue-500
+.notion p a{
+  @apply font-medium
 }
 .notion strong{
   @apply font-bold

@@ -8,28 +8,28 @@ type LayoutProps = {
 
 const Layout = ({children}: LayoutProps) => {
   return(
-    <div className="flex flex-col items-center justify-center  px-10 min-h-screen 	overflow-hidden	">
-      <header>
-        <nav className="h-8 absolute text-xl flex flex-row items-start justify-start mt-10 inset-0 px-10 lg:left-1/4 lg:px-2	">
+    <div>
+      <header className="sticky top-0 z-20 bg-white">
+        <nav className="py-2 px-4 text-xl font-bold mx-auto lg:max-w-4xl">
           <Link href={'/'}>
-            <a className="font-bold ">Home</a>
+            <a>Home</a>
           </Link>
           <Link href={'/#projects'}>
-            <a className="font-bold px-4">Projects</a>
+            <a className=" px-4">Projects</a>
           </Link>
           <Link href={'/HelpfulLinks'}>
-            <a className="font-bold "> Helpful Links</a>
+            <a>Helpful Links</a>
           </Link>
         </nav>
       </header>
-      <main className="flex flex-col items-center justify-center w-full lg:w-1/2 flex-1 text-center ">
+      <main className="px-4 flex flex-col items-center justify-center max-w-4xl mx-auto mt-16 antialiased ">
         {children}
       </main>
-      <footer className="pt-2 pb-12 border-t	w-full lg:w-1/2 h-full text-left text-xl">
+      <footer className="px-4 pt-2 pb-12 mt-10 border-t-2	max-w-4xl mx-auto text-left text-xl">
         <nav className="flex flex-row items-start justify-start mt-2">
-          <a className="" href={'https://github.com/theogainey/theogainey.com'}>GitHub</a>
+          <a href={'https://github.com/theogainey/theogainey.com'}>GitHub</a>
           <a className="px-4" href={'https://twitter.com/GaineyTheo'}>Twitter</a>
-          <a className="" href={'mailto:theogainey@gmail.com'}>Email</a>
+          <a  href={'mailto:theogainey@gmail.com'}>Email</a>
         </nav>
       </footer>
     </div>

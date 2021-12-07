@@ -26,8 +26,8 @@ const Home = ({projects}: InferGetStaticPropsType<typeof getStaticProps>) => {
         <meta name="twitter:description" content="Theo Gainey - Full Stack Developer"/>
         <title>Theo Gainey </title>
       </Head>
-        <section id={'about'} className="h-screen flex flex-col items-center justify-center">
-          <h1 className="text-4xl font-bold my-2">Theo Gainey</h1>
+        <section id={'about'} className="flex flex-col items-center justify-center">
+          <h1 className="text-4xl font-bold mb-2">Theo Gainey</h1>
           <Image
             priority
             src="/profile.png"
@@ -38,13 +38,16 @@ const Home = ({projects}: InferGetStaticPropsType<typeof getStaticProps>) => {
             />
           <h2 className="text-xl font-bold">Full Stack Developer Apprentice</h2>
           <span className="text-xl">Sparkbox </span>
-          <p className="text-xl">Jan 2022 - present </p>
+          <span className="text-xl">Jan 2022 - present </span>
         </section>
-        <section id={'projects'} className="flex flex-col items-start justify-start w-full mb-6">
-          <h2 className="text-4xl font-bold mb-4 ">Projects</h2>
+        <section id={'projects'}>
+          <h2 className="text-4xl font-bold my-2 pt-16">Projects</h2>
+          <p className="text-lg ">See what I have built</p>
+          <div className="sm:grid sm:grid-cols-2 sm:gap-10">
           {projects.map((project) =>
             <ProjectCard key={project.id} {...project.properties}/>
           )}
+          </div>
         </section>
     </Layout>
   )

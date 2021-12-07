@@ -4,6 +4,7 @@ import Layout from '../../components/Layout'
 import Block from '../../components/Block'
 import {getDatabase, getPage, getBlocks} from '../../lib/notion'
 import {parseOG} from '../../lib/metatags'
+import Image from 'next/image'
 
 const Page = ({blocks, pageProps:{description, slug, Name, image}}: InferGetStaticPropsType<typeof getStaticProps>) => {
 
@@ -26,14 +27,20 @@ const Page = ({blocks, pageProps:{description, slug, Name, image}}: InferGetStat
         {description && (<meta name="twitter:description" content={description['rich_text'][0].plain_text}/>)}
         {Name && (<title>{Name.title[0].plain_text} </title>)}
       </Head>
-      <section  className="my-16 w-full">
-        <h1 className="text-4xl font-bold my-4 py-2">{Name.title[0].plain_text}</h1>
+      <article>
+        <Image
+          src={`/${image.rich_text[0].plain_text}`}
+          height={960 }
+          width={1920 }
+          className={'p-2 border rounded-lg'}
+          alt={'test'}
+        />
         <div className="notion">
         {blocks.map((block) =>
           <Block key={block.id} {...block}/>
         )}
         </div>
-        </section>
+      </article>
     </Layout>
   )
 }
