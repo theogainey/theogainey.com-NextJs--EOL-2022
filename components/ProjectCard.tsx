@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 const ProjectCard = ({description, slug, created, Name, image}) => {
   return (
-    <div className="w-full my-4 " >
+    <div className="w-full my-4 group" >
       <Link href={`/projects/${slug.rich_text[0].plain_text}`}>
         <a>
           <Image
@@ -12,10 +12,10 @@ const ProjectCard = ({description, slug, created, Name, image}) => {
             height={960 }
             width={1920 }
             className={' border rounded-lg'}
-            alt={'test'}
+            alt={`${Name.title[0].plain_text}`}
           />
-          <h3 className="text-xl text-left font-bold">{Name.title[0].plain_text}</h3>
-          <p className=" text-left ">{description.rich_text[0].plain_text}</p>
+          <h3 className=" text-xl text-left font-bold group-hover:text-blue-500">{Name.title[0].plain_text}</h3>
+          <p className=" text-left group-hover:text-blue-500">{description.rich_text[0].plain_text}</p>
         </a>
       </Link>
     </div>

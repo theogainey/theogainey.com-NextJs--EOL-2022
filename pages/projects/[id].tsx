@@ -33,7 +33,7 @@ const Page = ({blocks, pageProps:{description, slug, Name, image}}: InferGetStat
           height={960 }
           width={1920 }
           className={'p-2 border rounded-lg'}
-          alt={'test'}
+          alt={`${Name.title[0].plain_text}`}
         />
         <div className="notion">
         {blocks.map((block) =>
