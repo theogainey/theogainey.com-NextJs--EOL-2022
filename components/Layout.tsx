@@ -29,7 +29,6 @@ const Layout = ({children}: LayoutProps) => {
         <nav className="flex flex-row items-start justify-start mt-2">
           <a href={'https://github.com/theogainey/theogainey.com'}>GitHub</a>
           <a className="px-4" href={'https://twitter.com/GaineyTheo'}>Twitter</a>
-          <a  href={'mailto:theogainey@gmail.com'}>Email</a>
         </nav>
       </footer>
     </div>
