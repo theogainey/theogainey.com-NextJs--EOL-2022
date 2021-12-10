@@ -5,8 +5,12 @@ import Block from '../../components/Block'
 import {getDatabase, getPage, getBlocks} from '../../lib/notion'
 import {parseOG} from '../../lib/metatags'
 import Image from 'next/image'
+import {useMemo} from 'react'
 
 const Page = ({blocks, pageProps:{description, slug, Name, image}}: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const content = useMemo(() => blocks.map((block) =>
+    <Block key={block.id} {...block}/>
+  ));
 
   return (
     <Layout>
@@ -37,9 +41,7 @@ const Page = ({blocks, pageProps:{description, slug, Name, image}}: InferGetStat
           alt={`${Name.title[0].plain_text}`}
         />
         <div className="notion">
-        {blocks.map((block) =>
-          <Block key={block.id} {...block}/>
-        )}
+        {content}
         </div>
       </article>
     </Layout>

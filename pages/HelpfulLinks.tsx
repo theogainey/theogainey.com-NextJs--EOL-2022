@@ -4,8 +4,13 @@ import {getBlocks, getPage} from '../lib/notion'
 import Block from '../components/Block'
 import {parseOG} from '../lib/metatags'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
+import {useMemo} from 'react'
 
 const LinkPage = ({blocks}: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const content = useMemo(() => blocks.map((block) =>
+    <Block key={block.id} {...block}/>
+  ));
+
   return (
     <Layout>
       <Head>
@@ -25,9 +30,7 @@ const LinkPage = ({blocks}: InferGetStaticPropsType<typeof getStaticProps>) => {
       <article  className=" w-full">
         <h1 className="text-4xl font-bold  pb-2">Helpful Links</h1>
         <div className="notion">
-        {blocks.map((block) =>
-          <Block key={block.id}  {...block}/>
-        )}
+        {content}
         </div>
       </article>
     </Layout>
