@@ -1,10 +1,9 @@
 import Link from 'next/link'
-import FormatedDate from './FormatedDate'
 import Image from 'next/image'
 
-const ProjectCard = ({description, slug, created, Name, image}) => {
+const ProjectCard = ({description, slug,  Name, image}) => {
   return (
-    <div className="w-full my-4 group" >
+    <div className="w-full my-4 group 	" >
       <Link href={`/projects/${slug.rich_text[0].plain_text}`}>
         <a>
           <Image

@@ -22,15 +22,14 @@ const LinkPage = ({blocks}: InferGetStaticPropsType<typeof getStaticProps>) => {
         <meta name="twitter:description" content="Links To Helpful Reasources"/>
         <title>Theo Gainey - Helpful Links </title>
       </Head>
-      <section  className="my-16 w-full">
-      <h1 className="text-4xl font-bold my-4 py-2">Helpful Links</h1>
-
-      <div className="notion">
-      {blocks.map((block) =>
-        <Block key={block.id}  {...block}/>
-      )}
-      </div>
-      </section>
+      <article  className=" w-full">
+        <h1 className="text-4xl font-bold  pb-2">Helpful Links</h1>
+        <div className="notion">
+        {blocks.map((block) =>
+          <Block key={block.id}  {...block}/>
+        )}
+        </div>
+      </article>
     </Layout>
   )
 }

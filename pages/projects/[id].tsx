@@ -29,6 +29,7 @@ const Page = ({blocks, pageProps:{description, slug, Name, image}}: InferGetStat
       </Head>
       <article>
         <Image
+          priority
           src={`/${image.rich_text[0].plain_text}`}
           height={960 }
           width={1920 }
