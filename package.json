@@ -3,6 +3,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node ./lib/gen-sitemap.mjs",
     "start": "next start"
   },
   "dependencies": {

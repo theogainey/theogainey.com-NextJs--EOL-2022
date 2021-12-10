@@ -1,8 +1,2 @@
-
-# Block all crawlers for /accounts
 User-agent: *
-Disallow:
-
-# Allow all crawlers
-User-agent: *
-Allow: /
+Sitemap: https://theogainey.com/sitemap.xml
