@@ -9,7 +9,7 @@ import {useMemo} from 'react'
 const LinkPage = ({blocks}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const content = useMemo(() => blocks.map((block) =>
     <Block key={block.id} {...block}/>
-  ));
+  ), [blocks]);
 
   return (
     <Layout>

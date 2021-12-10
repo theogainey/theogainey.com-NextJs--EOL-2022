@@ -10,7 +10,7 @@ import {useMemo} from 'react'
 const Page = ({blocks, pageProps:{description, slug, Name, image}}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const content = useMemo(() => blocks.map((block) =>
     <Block key={block.id} {...block}/>
-  ));
+  ), [blocks]);
 
   return (
     <Layout>
