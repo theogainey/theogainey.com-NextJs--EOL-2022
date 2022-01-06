@@ -30,12 +30,12 @@ const Home = ({projects}: InferGetStaticPropsType<typeof getStaticProps>) => {
           <h1 className="text-4xl font-bold mb-2">Theo Gainey</h1>
           <Image
             priority
-            src="/profile.png"
-            height={200}
-            width={200}
-            className={"rounded-full border border-gray-100 shadow-sm"}
+            src="/profile.jpg"
+            height={300}
+            width={362}
+            className={"rounded-lg border border-gray-100 shadow-sm"}
             alt={'Theo Gaieny'}
-            />
+          />
           <h2 className="text-xl font-bold">Full Stack Developer Apprentice</h2>
           <span className="text-xl">Sparkbox </span>
           <span className="text-xl">Jan 2022 - present </span>
