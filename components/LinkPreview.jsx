@@ -6,7 +6,7 @@ const LinkPreview =  ({link_preview, og}) => {
   }
 
   return (
-    <div >
+    <div className="px-4 flex flex-row items-center justify-center w-full">
     {og? (
       <>
     {og.image &&(

@@ -1,9 +1,40 @@
 import React from 'react'
+import { nanoid } from 'nanoid'
 import Bookmark from './Bookmark'
 import LinkPreview from './LinkPreview'
 
 const Block = ({type, quote, paragraph, link_preview, heading_1, heading_2, bookmark, heading_3, code, bulleted_list_item, numbered_list_item, og}) => {
-  const blockElement = (type) =>{
+  const annotate = (text) =>{
+    if (text.href) {
+      const childProps = {...text, href: null}
+      const childElement = annotate(childProps)
+      return React.createElement('a', {key:1, href: text.href}, childElement)
+    }
+    if (text.annotations.bold) {
+      const childProps = {...text, annotations:{...text.annotations, bold: null}}
+      const childElement = annotate(childProps)
+      return React.createElement('strong', {key:2}, childElement)
+    }
+    if (text.annotations.italic) {
+      const childProps = {...text, annotations:{...text.annotations, italic: null}}
+      const childElement = annotate(childProps)
+      return React.createElement('i', {key:3}, childElement)
+    }
+    if (text.annotations.strikethrough) {
+      const childProps = {...text, annotations:{...text.annotations, strikethrough: null}}
+      const childElement = annotate(childProps)
+      return React.createElement('s', {key:4}, childElement)
+    }
+    if (text.annotations.underline) {
+      const childProps = {...text, annotations:{...text.annotations, underline: null}}
+      const childElement = annotate(childProps)
+      return React.createElement('u', {key:5},  childElement)
+    }
+    else {
+      return text.plain_text
+    }
+  }
+  const blockElement = () =>{
     switch (type) {
       case "heading_1":
         const h1 = heading_1.text.map(e=> annotate(e))
@@ -64,39 +95,8 @@ const Block = ({type, quote, paragraph, link_preview, heading_1, heading_2, book
     }
   }
 
-  const annotate = (text) =>{
-    if (text.href ) {
-      const childProps = {...text, href: null}
-      const childElement = annotate(childProps)
-      return React.createElement('a', {key:1, href: text.href}, childElement)
-    }
-    if (text.annotations.bold) {
-      const childProps = {...text, annotations:{...text.annotations, bold: null}}
-      const childElement = annotate(childProps)
-      return React.createElement('strong', {key:2}, childElement)
-    }
-    if (text.annotations.italic) {
-      const childProps = {...text, annotations:{...text.annotations, italic: null}}
-      const childElement = annotate(childProps)
-      return React.createElement('i', {key:3}, childElement)
-    }
-    if (text.annotations.strikethrough) {
-      const childProps = {...text, annotations:{...text.annotations, strikethrough: null}}
-      const childElement = annotate(childProps)
-      return React.createElement('s', {key:4}, childElement)
-    }
-    if (text.annotations.underline) {
-      const childProps = {...text, annotations:{...text.annotations, underline: null}}
-      const childElement = annotate(childProps)
-      return React.createElement('u', {key:5},  childElement)
-    }
-    else {
-      return text.plain_text
-    }
-  }
-
   return (
-    blockElement(type)
+    blockElement()
   )
 }
 

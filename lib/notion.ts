@@ -1,4 +1,4 @@
-import { Client } from "@notionhq/client";
+import { Client } from '@notionhq/client';
 
 const notion = new Client({
   auth: process.env.NOTION_TOKEN,
@@ -8,10 +8,10 @@ export const getDatabase = async () => {
   const response = await notion.databases.query({
     database_id: `${process.env.PROJECT_DB}`,
     filter: {
-      property: "published",
+      property: 'published',
       checkbox: {
-        equals: true
-      }
+        equals: true,
+      },
     },
     sorts: [
       {
@@ -23,16 +23,15 @@ export const getDatabase = async () => {
   return response.results;
 };
 
-
-export const getPage = async (pageSlug:string | string[]) => {
+export const getPage = async (pageSlug: string | string[]) => {
   const response = await notion.databases.query({
     database_id: `${process.env.PROJECT_DB}`,
     filter: {
-      property: "slug",
+      property: 'slug',
       text: {
-        contains: `${pageSlug}`
-      }
-    }
+        contains: `${pageSlug}`,
+      },
+    },
   });
   return response.results[0];
 };

@@ -1,3 +1,4 @@
+import React, {useMemo} from 'react'
 import {GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
 import Layout from '../../components/Layout'
@@ -5,7 +6,6 @@ import Block from '../../components/Block'
 import {getDatabase, getPage, getBlocks} from '../../lib/notion'
 import {parseOG} from '../../lib/metatags'
 import Image from 'next/image'
-import {useMemo} from 'react'
 
 const Page = ({blocks, pageProps:{description, slug, Name, image}}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const content = useMemo(() => blocks.map((block) =>
