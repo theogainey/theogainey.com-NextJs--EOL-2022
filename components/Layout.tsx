@@ -27,7 +27,7 @@ const Layout = ({children}: LayoutProps) => {
       </main>
       <footer className="px-4 pt-2 pb-12 mt-10 	max-w-4xl mx-auto text-left text-xl">
         <nav className="border-t-2 flex flex-row items-start justify-start pt-2">
-          <a className="hover:text-blue-500" href={'https://github.com/theogainey/theogainey.com'}>GitHub</a>
+          <a className="hover:text-blue-500" href={'https://github.com/theogainey'}>GitHub</a>
           <a className="px-4 hover:text-blue-500" href={'https://twitter.com/GaineyTheo'}>Twitter</a>
         </nav>
       </footer>
