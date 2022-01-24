@@ -27,18 +27,17 @@ const Home = ({projects}: InferGetStaticPropsType<typeof getStaticProps>) => {
         <title>Theo Gainey </title>
       </Head>
         <section id={'about'} className="flex flex-col items-center justify-center">
-          <h1 className="text-4xl font-bold mb-2">Theo Gainey</h1>
+          <h1 className="text-4xl font-bold mb-2 text-green-300">Theo Gainey</h1>
           <Image
             priority
             src="/profile.jpg"
             height={300}
             width={362}
-            className={"rounded-lg border border-gray-100 shadow-sm"}
-            alt={'Theo Gaieny'}
+            alt={'Theo Gainey'}
           />
-          <h2 className="text-xl font-bold">Full Stack Developer Apprentice</h2>
-          <span className="text-xl">Sparkbox </span>
-          <span className="text-xl">Jan 2022 - present </span>
+          <h2 className="mt-2 text-xl font-bold text-green-300">Full Stack Developer Apprentice</h2>
+          <span className="text-xl text-green-300">Sparkbox </span>
+          <span className="text-xl text-green-300">Jan 2022 - present </span>
         </section>
         <section id={'projects'}>
           <h2 className="text-4xl font-bold my-2 pt-16">Projects</h2>
