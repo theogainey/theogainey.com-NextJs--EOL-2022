@@ -1,3 +1,7 @@
+# This Repo Has Been Archived
+
+This repo has been archived because it stopped being the source code for theogainey.com in the Summer of 2022  
+
 ## theogainey.com
 - Framework - [Next.js](https://nextjs.org/)
 - CSS  - [Tailwind CSS](https://tailwindcss.com/)
